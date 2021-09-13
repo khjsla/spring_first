@@ -1,25 +1,40 @@
-package com.nds.mediMap;
+package kang.firstest.springprj1;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kang.firstest.springprj1.springmvc.CommandMap;
+
+import org.apache.jasper.tagplugins.jstl.core.Set;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.data.web.JsonPath;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,13 +54,12 @@ import lombok.extern.slf4j.Slf4j;
  *  2021.09.10  강현지   선별진료소 RAW JSON 데이터
  *      </pre>
  *
- *      Copyright (C) 2021 by NDS., All right reserved.
  */
 
 @Slf4j
 @RestController
 @RequestMapping(value = "/mydata/pharmacy", produces = "application/json")
-public class mediMapApiController {
+public class TestController {
 
     /**
      * 메소드명 : internTest 설 명 : 약국 API 사용하여 약국 리스트 조회
@@ -94,7 +108,7 @@ public class mediMapApiController {
         JSONParser jsonParser = new JSONParser();
 
         // to get path
-        String path = mediMapApiController.class.getResource("").getPath()
+        String path = TestController.class.getResource("").getPath()
                 + "../../../../../src/main/resources/static/covid.json";
 
         Reader reader = new FileReader(path);
@@ -114,28 +128,105 @@ public class mediMapApiController {
      */
 
     @GetMapping("/pharmacyTest")
-    public /*JSONObject*/ String pahrmacy_list() throws ParseException, IOException {
+    public JSONObject pahrmacy_list() throws ParseException, IOException {
         JSONParser jsonParser = new JSONParser();
 
+        String path = TestController.class.getResource("").getPath()
+                + "../../../../../src/main/resources/static/pharmacy.json";
+        Reader reader = new FileReader(path);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+
+        return jsonObject;
+    }
+
+    @PostMapping("/pharmacyOne")
+    public ArrayList searchSido(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap
+    /*Authentication authentication*/) throws ParseException, IOException {
+
+        ModelAndView mav = new ModelAndView("jsonView");
+        // Map<String, Object> authMap = (Map<String, Object>) authentication.getPrincipal();
+
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.putAll(commandMap.getMap());
+        // paramMap.put("USER_NO", authMap.get("USER_NO"));
+
+        log.info("pharmacyOne -------------------");
+
+        System.out.println(paramMap);
+        System.out.println(paramMap.get("sido"));
+        log.info("pharmacyOne -------------------");
+
+        JSONParser jsonParser = new JSONParser();
+        ArrayList x = null;
         // to get path
-        String path = mediMapApiController.class.getResource("").getPath()
+        String path = TestController.class.getResource("").getPath()
                 + "../../../../../src/main/resources/static/pharmacy.json";
 
         Reader reader = new FileReader(path);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-        
-        Object pharmacy_list = jsonObject.get("Sheet1");
-        // pharmacy_list => 우선 이걸로 sheet1 안으로는 들어가게 되었음
 
-        try {
-            // forEach 로 조건 걸 수 있을까?
-            // log.info("WHAT IS .get", jsonObject.get("Sheet1"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        x = com.jayway.jsonpath.JsonPath.read(jsonObject, "$.Sheet1[?(@.시도코드==" + paramMap.get("sido") + ")]");
 
-        // return jsonObject;
-        return "test";
+        return x;
+    }
+    
+    /**
+     * 메소드명 : pharmacyTest 설 명 : 전국 선별 진료소 data list
+     * 
+     * @param
+     * @return
+     * @throws ParseException
+     * @throws IOException
+     * @throws Exception
+     */
+
+    @PostMapping("/khjTrashCode")
+    public /* JSONObject */ ArrayList pahrmacy_list(@RequestBody JSONObject pBody) throws ParseException, IOException {
+        JSONParser jsonParser = new JSONParser();
+        ArrayList x = null;
+
+        // to get path
+        String path = TestController.class.getResource("").getPath()
+                + "../../../../../src/main/resources/static/pharmacy.json";
+
+        Reader reader = new FileReader(path);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+
+        x = com.jayway.jsonpath.JsonPath.read(jsonObject, "$.Sheet1[?(@.시도코드==" + pBody.get("code") + ")]");
+
+        return x;
     }
 
+
+    @PostMapping("/pharmacyRange")
+    public ArrayList searchRange(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap
+    /*Authentication authentication*/) throws ParseException, IOException {
+        // sx <= x좌표 <= ex && sy <= y좌표 <= ey 값 가져오기
+        
+        ModelAndView mav = new ModelAndView("jsonView");
+
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.putAll(commandMap.getMap());
+
+        log.info("pharmacyOne -------------------");
+
+        System.out.println(paramMap.get("sx"));
+        System.out.println(paramMap.get("sy"));
+        System.out.println(paramMap.get("ex"));
+        System.out.println(paramMap.get("ey"));
+        log.info("pharmacyOne -------------------");
+
+        JSONParser jsonParser = new JSONParser();
+        ArrayList x = null;
+        // to get path
+        String path = TestController.class.getResource("").getPath()
+                + "../../../../../src/main/resources/static/pharmacy.json";
+
+        Reader reader = new FileReader(path);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+
+        x = com.jayway.jsonpath.JsonPath.read(jsonObject, "$.Sheet1[?(@.x좌표>=" + paramMap.get("sx") + "&& @.x좌표<="+ paramMap.get("ex") + "&& @.y좌표>="+ paramMap.get("sy") + "&& @.y좌표<="+ paramMap.get("ey") +")]");
+        
+        return x;
+    }
 }

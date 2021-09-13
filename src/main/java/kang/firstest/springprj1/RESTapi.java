@@ -27,7 +27,7 @@ public class RESTapi {
     }
 
     @PostMapping("/postTest")
-    public Object hello(@RequestBody String pBody) throws JsonProcessingException {
+    public Object hello(@RequestBody String pBody) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> map = mapper.readValue(pBody, new TypeReference<Map<String, Object>>() {
         });
@@ -45,9 +45,7 @@ public class RESTapi {
 
         try {
             URL url = new URL(uri);
-            URLConnection connection = url.openConnection();
-            
-            
+            URLConnection connection = url.openConnection();      
 
         } catch (IOException e) {
 
