@@ -1,0 +1,88 @@
+<!--
+    쿼리명 : id_name
+	설  명 : 야간약국 입력
+	parameterType = java.util.Map
+	resultType    = java.util.Map
+	작성일      작성자  작성내용
+	==========  =====  =====================
+	2021.09.09  강현지  최초생성
+	2021.09.15  강현지  쿼리수정
+	-->
+	<!-- 야간 약국 데이터 입력-->
+	<insert id="id_name" parameterType="Map">
+		/* 약국 저장 : balhMapper.id_name */
+		INSERT INTO TABLE_NAME(
+			  PHARM_CD
+			, YKiHO
+			, PHARM_NM
+			, TEL
+			, POST_NO
+			, ADDRESS
+			, W1_START_TIME
+			, W2_START_TIME
+			, W3_START_TIME
+			, W4_START_TIME
+			, W5_START_TIME
+			, SAT_START_TIME
+			, SUN_START_TIME
+			, W8_START_TIME
+			, W1_END_TIME
+			, W2_END_TIME
+			, W3_END_TIME
+			, W4_END_TIME
+			, W5_END_TIME
+			, SAT_END_TIME
+			, SUN_END_TIME
+			, W8_END_TIME
+			, WGS84_LATITUDE
+			, WGS84_LONGITUDE
+		) VALUES (
+			  #{pid}
+			, 'N'
+			, #{name}
+			, #{tel}
+			, CONCAT(#{pos1} , #{pos2})
+			, #{add}
+			, #{1_start}
+			, #{2_start}
+			, #{3_start}
+			, #{4_start}
+			, #{5_start}
+			, #{6_start}
+			, #{7_start}
+			, #{8_start}
+			, #{1_end}
+			, #{2_end}
+			, #{3_end}
+			, #{4_end}
+			, #{5_end}
+			, #{6_end}
+			, #{7_end}
+			, #{8_end}
+			, #{lat}
+			, #{long}
+		) 
+		ON DUPLICATE KEY UPDATE 
+		      PHARM_NM = #{name}
+			, TEL = #{tel}
+			, POST_NO = CONCAT(#{pos1} , #{pos2})
+			, ADDRESS = #{add}
+			, W1_START_TIME = #{1_start}
+			, W2_START_TIME = #{2_start}
+			, W3_START_TIME = #{3_start}
+			, W4_START_TIME = #{4_start}
+			, W5_START_TIME = #{5_start}
+			, SAT_START_TIME = #{6_start}
+			, SUN_START_TIME = #{7_start}
+			, W8_START_TIME = #{8_start}
+			, W1_END_TIME = #{1_end}
+			, W2_END_TIME = #{2_end}
+			, W3_END_TIME = #{3_end}
+			, W4_END_TIME = #{4_end}
+			, W5_END_TIME = #{5_end}
+			, SAT_END_TIME = #{6_end}
+			, SUN_END_TIME = #{7_end}
+			, W8_END_TIME = #{8_end}
+			, WGS84_LATITUDE = #{lat}
+			, WGS84_LONGITUDE = #{long}
+	</insert>

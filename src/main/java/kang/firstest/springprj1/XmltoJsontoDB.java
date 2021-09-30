@@ -1,5 +1,7 @@
-package kang.firstest.springprj1;
+/* THIS IS FOR JAVA 11 VERSION !! <- IMPORTANT */
 // Public API data [XML] to [JSON] and finally insert [DB]
+
+package kang.firstest.springprj1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
