@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### CONFIG FROM KHJ ###
+src/main/java/kang/firstest/springprj1/config/

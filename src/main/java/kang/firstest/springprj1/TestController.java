@@ -109,7 +109,7 @@ public class TestController {
 
         // to get path
         String path = TestController.class.getResource("").getPath()
-                + "../../../../../src/main/resources/static/covid.json";
+                + "../../../../../resources/covid.json";
 
         Reader reader = new FileReader(path);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
@@ -132,7 +132,7 @@ public class TestController {
         JSONParser jsonParser = new JSONParser();
 
         String path = TestController.class.getResource("").getPath()
-                + "../../../../../src/main/resources/static/pharmacy.json";
+                + "../../../../../src/main/resources/pharmacy.json";
         Reader reader = new FileReader(path);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
 
@@ -160,7 +160,7 @@ public class TestController {
         ArrayList x = null;
         // to get path
         String path = TestController.class.getResource("").getPath()
-                + "../../../../../src/main/resources/static/pharmacy.json";
+                + "../../../../../src/main/resources/pharmacy.json";
 
         Reader reader = new FileReader(path);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
@@ -187,7 +187,7 @@ public class TestController {
 
         // to get path
         String path = TestController.class.getResource("").getPath()
-                + "../../../../../src/main/resources/static/pharmacy.json";
+                + "../../../../../src/main/resources/pharmacy.json";
 
         Reader reader = new FileReader(path);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
@@ -220,7 +220,7 @@ public class TestController {
         ArrayList x = null;
         // to get path
         String path = TestController.class.getResource("").getPath()
-                + "../../../../../src/main/resources/static/pharmacy.json";
+                + "../../../../../src/main/resources/pharmacy.json";
 
         Reader reader = new FileReader(path);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);

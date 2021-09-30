@@ -27,7 +27,7 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 		
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 			<exclusions>
@@ -36,7 +36,7 @@
 							<artifactId>tomcat-jdbc</artifactId>
 					</exclusion>
 			</exclusions>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -58,18 +58,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
             <version>2.3.4.RELEASE</version>
-        </dependency>
+        </dependency> -->
 
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
             <version>2.0.0.RELEASE</version>
 		</dependency>
-		
+		 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -139,12 +139,12 @@
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- httpcore,client(카카오) -->
+		<!-- httpcore,client(카카오)
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>4.4.6</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- <dependency>
 			<groupId>com.opencsv</groupId>
@@ -159,12 +159,12 @@
         </dependency>
 
 		<!-- Mybatis -->		
-        <dependency>
+        <!-- <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.4.1</version>
         </dependency>
-        
+         -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
@@ -200,11 +200,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -229,7 +229,7 @@
 		</dependency>
 	
 		<!--  excel 관련 -->
-		<dependency>
+		<!-- <dependency>
 		  <groupId>org.apache.poi</groupId>
 		  <artifactId>poi</artifactId>
 		  <version>3.9</version>
@@ -240,24 +240,24 @@
 		  <artifactId>poi-ooxml</artifactId>
 		  <version>3.9</version>
 		</dependency>
-	
+	 -->
 		<dependency>
 		  <groupId>org.apache.poi</groupId>
 		  <artifactId>poi-ooxml-schemas</artifactId>
 		  <version>3.9</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.9</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			 <artifactId>jaxb-api</artifactId>
 			<version>2.3.0</version>
-	 </dependency>
+	    </dependency>
 		<!-- https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java -->
 		<dependency>
 			<groupId>com.mashape.unirest</groupId>
@@ -265,7 +265,7 @@
 			<version>1.4.9</version>
 		</dependency>
 	 
-		<dependency>
+		<!-- <dependency>
 			<groupId>kcp-ConnectionKCP</groupId>
 			<artifactId>kcp-ConnectionKCP</artifactId>
 			<version>2.0.7</version>
@@ -279,7 +279,7 @@
 			<version>2.0.7</version>
 			<scope>system</scope>
 			<systemPath>${pom.basedir}/agent.java/external-lib/jPpcliE.jar</systemPath>
-		</dependency>
+		</dependency> -->
 
 		<!--  intern2109 for RestTemplate -->
 		<dependency>
@@ -292,6 +292,17 @@
           <artifactId>json-path</artifactId>
           <version>2.6.0</version>
         </dependency>
+
+        <!-- 
+			to use json [XML to Json]
+		 -->
+		<dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+		</dependency>
+
 
 	</dependencies>
 	<build>
